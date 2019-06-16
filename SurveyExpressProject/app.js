@@ -6,6 +6,8 @@ var path = require('path');
 var cors = require('cors');
 const creditional= require('./routes/Credentials');
 
+var authMiddleware = require('./middlewares/AuthMiddleware');
+
 const mangoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -20,6 +22,8 @@ var survaysRouter = require('./routes/survey');
 var app = express();
 
 app.use(cors());
+
+//todo app.use(authMiddleware.authenticate())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
