@@ -12,6 +12,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material-module';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, CreateSurveyComponent],
   imports: [
@@ -20,7 +22,8 @@ import { CreateSurveyComponent } from './create-survey/create-survey.component';
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
