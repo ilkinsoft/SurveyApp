@@ -13,10 +13,6 @@ Desktop.ini
 *~
 
 
-# dependencies
-/node_modules
-
-
 # npm
 node_modules
 *.log
@@ -28,3 +24,5 @@ coverage
 
 # Benchmarking
 benchmarks/graphs
+
+routes/Credentials.js
