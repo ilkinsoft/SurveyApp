@@ -3,6 +3,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cors = require('cors');
 const creditional= require('./routes/Credentials');
 
 const mangoClient = require('mongodb').MongoClient;
@@ -18,17 +19,18 @@ var survaysRouter = require('./routes/survey');
 
 var app = express();
 
+app.use(cors());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
 let DB = null;
-var cors = require('cors');
+
 
 app.use(async (req, res, next) => {
   try {
-    res.header('Access-Control-Allow-Origin', "*");
     if (DB) {
       req.DB = DB;
     } else {
@@ -43,7 +45,7 @@ app.use(async (req, res, next) => {
 
 })
 
-// app.use(cors);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -60,6 +62,7 @@ app.use('/survay', survaysRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 
 

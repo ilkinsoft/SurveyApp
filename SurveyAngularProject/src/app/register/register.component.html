@@ -1,0 +1,61 @@
+ <!-- Simple login form -->
+ <form [formGroup]="registerForm" (ngSubmit)='onSubmit()'>
+   <div class="panel panel-body login-form">
+      <div class="text-center">
+         <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+         <h5 class="content-group">Register<small class="display-block">Enter your credentials below</small></h5>
+      </div>
+ 
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username"  [formControl]="registerForm.get('username')">
+      </mat-form-field>
+
+     <mat-form-field class="example-full-width">
+       <input matInput placeholder="Email"  [formControl]="registerForm.get('email')">
+     </mat-form-field>
+ 
+      <mat-form-field class="example-full-width">
+          <input matInput type="password" matInput placeholder="Password"  [formControl]="registerForm.get('password')">
+      </mat-form-field>
+
+     <mat-form-field class="example-full-width">
+       <mat-label>Gender</mat-label>
+       <mat-select [formControl]="registerForm.get('gender')">
+         <mat-option value="male">Male</mat-option>
+         <mat-option value="female">Female</mat-option>
+       </mat-select>
+     </mat-form-field>
+
+
+     <mat-form-field class="example-full-width">
+       <mat-label>Marital Status</mat-label>
+       <mat-select [formControl]="registerForm.get('maritalStatus')">
+         <mat-option value="single">Single</mat-option>
+         <mat-option value="married">Married</mat-option>
+       </mat-select>
+     </mat-form-field>
+
+     <mat-form-field class="example-full-width">
+       <input matInput [formControl]="registerForm.get('birthday')" [matDatepicker]="picker" placeholder="Birthday">
+       <mat-datepicker-toggle matSuffix [for]="picker">
+         <mat-icon matDatepickerToggleIcon>/></mat-icon>
+       </mat-datepicker-toggle>
+       <mat-datepicker #picker></mat-datepicker>
+     </mat-form-field>
+
+
+     <mat-form-field class="example-full-width">
+       <input matInput placeholder="Country" [formControl]="registerForm.get('country')">
+     </mat-form-field>
+
+ 
+      <div class="form-group">
+         <button type="submit"  [disabled]="!registerForm.valid" class="btn bg-pink-400 btn-block">Sign up<i class="icon-circle-right2 position-right"></i></button>
+      </div>
+ 
+      <div class="text-center">
+         <a routerLink="/login">Already a member?</a>
+      </div>
+   </div>
+ </form>
+ <!-- /simple login form -->

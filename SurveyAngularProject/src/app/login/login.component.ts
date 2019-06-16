@@ -1,47 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {MyHttpServiceService} from "../services/MyHttpService";
+import { ToastrService } from 'ngx-toastr';
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  // userTestStatus = [{ name: "Madhav Sai", age: 10, location: 'Nagpur' },
+export class LoginComponent implements OnInit {
 
-  // { name: "Suresh Dasari", age: 30, location: 'Chennai' },
+  loginForm: FormGroup;
 
-  // { name: "Rohini Alavala", age: 29, location: 'Chennai' },
 
-  // { name: "Praveen Kumar", age: 25, location: 'Bangalore' },
 
-  // { name: "Sateesh Chandra", age: 27, location: 'Vizag' },
+  constructor(private router:Router,private toastr: ToastrService,private formBuilder: FormBuilder,private myHttpService:MyHttpServiceService) {
+    this.loginForm = formBuilder.group({
+      'username': ['', Validators.compose([Validators.required])],
+      'password': ['', Validators.compose([Validators.required])],
+    });
 
-  // { name: "Siva Prasad", age: 38, location: 'Nagpur' },
-
-  // { name: "Sudheer Rayana", age: 25, location: 'Kakinada' },
-
-  // { name: "Honey Yemineni", age: 7, location: 'Nagpur' },
-
-  // { name: "Mahendra Dasari", age: 22, location: 'Vijayawada' },
-
-  // { name: "Mahesh Dasari", age: 23, location: 'California' },
-
-  // { name: "Nagaraju Dasari", age: 34, location: 'Atlanta' },
-
-  // { name: "Gopi Krishna", age: 29, location: 'Repalle' },
-
-  // { name: "Sudheer Uppala", age: 19, location: 'Guntur' },
-
-  // { name: "Sushmita", age: 27, location: 'Vizag' }
-
-  // ];
-  
-  constructor() {
-    console.log("In ")
   }
 
-  // ngOnInit() {
+  ngOnInit() {
+  }
 
-  // }
+  onSubmit(): void {
+
+    this.myHttpService.post('users/login',this.loginForm.value).subscribe((result: any) =>{
+
+      if(result.code === 'SUCCESS'){
+        this.toastr.success('Logged in successfully!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
+        localStorage.setItem('token', result.data);
+        //this.router.navigate(['/login'])
+      }else{
+        this.toastr.error("Username or password wrong!", 'Error :(',{timeOut:3000, positionClass: 'toast-top-center'});
+
+      }
+      console.log(result);
+    });
+
+    console.log(this.loginForm.value);
+  }
 
 }
