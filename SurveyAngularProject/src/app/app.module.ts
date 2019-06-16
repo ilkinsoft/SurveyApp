@@ -13,12 +13,18 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material-module';
+import {ToastrModule} from "ngx-toastr";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent,RegisterComponent],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
