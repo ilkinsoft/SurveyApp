@@ -1,11 +1,16 @@
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 const creditional= require('./routes/Credentials');
+
+const mangoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mangoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://" +creditional.userName + ":"+creditional.password+"@cluster0-4k3cn.gcp.mongodb.net/test?retryWrites=true&w=majority"
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var survaysRouter = require('./routes/survey');
@@ -16,6 +21,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
+let DB = null;
 
 app.use(async (req, res, next) => {
   try {
@@ -32,6 +40,7 @@ app.use(async (req, res, next) => {
   }
 
 })
+
 
 app.use(logger('dev'));
 app.use(express.json());
