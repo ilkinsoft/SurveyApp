@@ -24,9 +24,11 @@ app.set('view engine', 'jade');
 
 
 let DB = null;
+var cors = require('cors');
 
 app.use(async (req, res, next) => {
   try {
+    res.header('Access-Control-Allow-Origin', "*");
     if (DB) {
       req.DB = DB;
     } else {
@@ -41,7 +43,7 @@ app.use(async (req, res, next) => {
 
 })
 
-
+// app.use(cors);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -59,8 +61,6 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
-let DB = null;
 
 
 // error handler
