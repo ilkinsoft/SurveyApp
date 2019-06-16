@@ -3,6 +3,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cors = require('cors');
 const creditional= require('./routes/Credentials');
 
 const mangoClient = require('mongodb').MongoClient;
@@ -18,12 +19,15 @@ var survaysRouter = require('./routes/survey');
 
 var app = express();
 
+app.use(cors());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
 let DB = null;
+
 
 app.use(async (req, res, next) => {
   try {
@@ -60,7 +64,6 @@ app.use(function(req, res, next) {
 });
 
 
-let DB = null;
 
 
 // error handler
