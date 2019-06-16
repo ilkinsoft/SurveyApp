@@ -35,7 +35,7 @@ router.post('/login',async function(req,res,next) {
   let user = await req.DB.collection('users').findOne({username:req.body.username,password:req.body.password});
   if(user){
     delete user.password;
-    resultData.makeSuccessWithData(jwt.generate(user));
+    resultData.makeSuccessWithData({token:jwt.generate(user),user:user});
   }else{
     resultData.code=resultEnum.authError;
     resultData.data="Username or password incorrect!";
