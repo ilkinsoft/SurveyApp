@@ -10,3 +10,7 @@
   mat-form-field {
     margin-right: 12px;
   }
+
+  .fullWidth{
+    width: 100% !important
+  }
