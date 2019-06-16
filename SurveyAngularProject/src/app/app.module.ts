@@ -10,9 +10,10 @@ import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material-module';
+import { CreateSurveyComponent } from './create-survey/create-survey.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, CreateSurveyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
