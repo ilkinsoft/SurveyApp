@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
       if(result.code === 'SUCCESS'){
         this.toastr.success('Logged in successfully!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
+        localStorage.setItem('token', result.data);
         //this.router.navigate(['/login'])
       }else{
         this.toastr.error("Username or password wrong!", 'Error :(',{timeOut:3000, positionClass: 'toast-top-center'});
