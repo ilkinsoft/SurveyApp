@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
     res.send('surveyy');
 });
 
-router.post('/', async function (req, res, next) {
+router.post('/add', async function (req, res, next) {
 
     if (!req.body) {
         // 400 Bad Request
