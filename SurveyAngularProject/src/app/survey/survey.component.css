@@ -8,4 +8,9 @@
     overflow: auto;
     max-height: 500px;
   }
+
+  .mat-row:hover{
+    cursor: pointer; 
+    background-color:  #e6e6e6;
+  }
   

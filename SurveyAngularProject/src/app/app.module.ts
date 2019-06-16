@@ -12,9 +12,11 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material-module';
 import { SurveyComponent } from './survey/survey.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SurvayDetailsComponent } from './survay-details/survay-details.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    DemoMaterialModule, BrowserAnimationsModule
+    DemoMaterialModule, BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
