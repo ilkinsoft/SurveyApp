@@ -7,11 +7,19 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './routing';
 import { HomeComponent } from './home/home.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {DemoMaterialModule} from './material-module';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
