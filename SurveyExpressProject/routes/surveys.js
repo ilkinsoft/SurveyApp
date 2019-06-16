@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient
@@ -23,9 +24,10 @@ router.use((req, res, next) => {
 })
 
 
-router.get('/', function (req, res, next) {
-    res.send('surveyy');
-});
+router.get('/:username', async function (req, res, next) {
+    let doc = await req.DB.collection("surveys").find({"createdBy": req.params.username}).toArray();
+    // console.dir(doc)
+    res.json(doc)});
 
 router.post('/add', async function (req, res, next) {
 
@@ -48,3 +50,4 @@ router.post('/add', async function (req, res, next) {
 
 
 module.exports = router;
+
