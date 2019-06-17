@@ -7,16 +7,17 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './routing';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
-import {DemoMaterialModule} from './material-module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DemoMaterialModule } from './material-module';
 import { SurveyComponent } from './survey/survey.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
+import { MulitchoiseQuestionComponent } from './mulitchoise-question/mulitchoise-question.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent, MulitchoiseQuestionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

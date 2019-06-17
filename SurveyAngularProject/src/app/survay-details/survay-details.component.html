@@ -1,12 +1,6 @@
-<div class="container">
-  <div class="col-sm-4 text-center">
-    <h2 class="text-center">I did it my friend </h2>
-    <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [options]="pieChartOptions"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-      </div>
-</div>
+<ul>
+  <div *ngFor="let question of questions " >
+    <!-- <div *ngIf = question.choices.length > 0 ; -->
+    <app-mulitchoisequestion [question] = 'question' > </app-mulitchoisequestion>
+  </div>
+</ul>

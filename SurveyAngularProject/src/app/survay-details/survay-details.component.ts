@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { RootObject, Question } from '../serveyStr';
 
 @Component({
   selector: 'app-survay-details',
   templateUrl: './survay-details.component.html',
   styleUrls: ['./survay-details.component.css']
 })
+
+
 export class SurvayDetailsComponent {
-
-  title = 'app';
-  public pieChartLabels: string[] = ["A", "A-", "B+", "B", "B-"];
-  public pieChartData: number[] = [21, 39, 10, 14, 16];
-  public pieChartType: string = 'pie';
-  public pieChartOptions: any = {
-    'backgroundColor': [
-      "#FF6384",
-      "#4BC0C0",
-      "#FFCE56",
-      "#E7E9ED",
-      "#36A2EB"
-    ]
+  id: string;
+  data: RootObject;
+  questions: Question[];
+  constructor(private router: ActivatedRoute, private httpClient: HttpClient) {
+    this.id = this.router.snapshot.paramMap.get('id');
+    this.set_products()
   }
 
-  // events on slice click
-  public chartClicked(e: any): void {
-    console.log(e);
+  set_products() {
+    this.httpClient.get('http://localhost:3000/survay/serveyId/' + this.id).subscribe((res) => {
+      this.data = JSON.parse(JSON.stringify(res));
+      console.log("size " + this.data.questions.length)
+      this.questions = this.data.questions;
+    });
   }
 
-  // event on pie chart slice hover
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
+
 }
+
+
+
