@@ -4,3 +4,11 @@ SurveyAngularProject/.editorconfig
 SurveyAngularProject/browserslist
 SurveyExpressProject/node_modules/.bin/semver
 SurveyExpressProject/node_modules/
+
+.history/*
+.history
+.history/
+
+.idea/
+.idea
+.idea/*
