@@ -1,4 +1,15 @@
-<div >{{question.question}} </div>
-<div *ngFor = "let articleAnswer of question.articleAnswer">
-  <div >{{articleAnswer.answer}}  {{articleAnswer.count}}</div>
-</div>
+<mat-card class=" question-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{question.question}}</mat-card-title>
+    <mat-card-subtitle>Answered by: {{question.answers.length}}</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <mat-card-content>
+    <div *ngFor="let articleAnswer of question.articleAnswer">
+      <div class="answer-row"><span class="answer-row__q">{{articleAnswer.answer}}</span> <span
+          class="answer-row__a">{{articleAnswer.count}}</span></div>
+    </div>
+  </mat-card-content>
+</mat-card>

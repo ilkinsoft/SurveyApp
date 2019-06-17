@@ -1,0 +1,16 @@
+.answer-row {
+    padding: 10px 15px;
+    background: #eee;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.answer-row__q {
+    float: left;
+    padding-top: 5px;
+    font-size: 18px;
+}
+.answer-row__a {
+    float: right;
+    font-weight: bold;
+    font-size: 22px;
+}
