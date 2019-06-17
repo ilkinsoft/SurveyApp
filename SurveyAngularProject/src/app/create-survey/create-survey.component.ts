@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MyHttpServiceService } from '../services/MyHttpService';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-survey',
@@ -19,7 +20,7 @@ export class CreateSurveyComponent implements OnInit {
 
   resultSurvey={title:"",createdBy:"",createdAt:"",questions:[]};
 
-  constructor(private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService) {
+  constructor(private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
 
     this.surveyForm = formBuilder.group({
 
@@ -81,8 +82,7 @@ export class CreateSurveyComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(): void {
-
+  parseJson() {
     this.resultSurvey.title=this.surveyForm.value.title;
     this.resultSurvey.createdBy="somebody";
     this.resultSurvey.createdAt= new Date().toString();
@@ -105,12 +105,28 @@ export class CreateSurveyComponent implements OnInit {
       questionObject.choices=choices;
 
       this.resultSurvey.questions.push(questionObject);
-
     }
-
-
-    console.log(this.surveyForm.value);
+    // console.log(this.surveyForm.value);
     console.log(this.resultSurvey);
+  }
+
+  onSubmit(): void {
+
+    this.parseJson()
+    let body = JSON.parse(JSON.stringify(this.resultSurvey))
+    console.log(body)
+
+    this.myHttpService.post('surveys/add', body).subscribe((result: any) =>{
+      //console.log("success")
+
+      // console.log(this.resultSurvey)
+      if(result.code === 'SUCCESS'){
+        this.toastr.success('Yaay, Created successfully!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
+      }else{
+        this.toastr.error("Something went wrong!", 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
+      }
+      console.log(result);
+    });
 
   }
 

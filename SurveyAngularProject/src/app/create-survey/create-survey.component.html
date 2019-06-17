@@ -1,3 +1,5 @@
+<h3>Create survey</h3>
+
 <div class="survey-container">
 
   <form [formGroup]="surveyForm" (ngSubmit)='onSubmit()'>
@@ -6,21 +8,21 @@
       <input matInput placeholder="Title" [formControl]="surveyForm.get('title')">
     </mat-form-field>
 
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-select placeholder="Created by" [formControl]="surveyForm.get('createdBy')">
         <mat-option value="1">Ilkin</mat-option>
         <mat-option value="1">Eren</mat-option>
         <mat-option value="1">Hisham</mat-option>
         <mat-option value="1">Andy</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput [matDatepicker]="picker1" placeholder="Created at" [formControl]="date"
         [formControl]="surveyForm.get('createdAt')">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
 
 
     <div formArrayName="questions" *ngFor="let question of surveyForm.get('questions').controls; let i = index;">
