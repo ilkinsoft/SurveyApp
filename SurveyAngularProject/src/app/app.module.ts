@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
+import { SurveyService } from './survey.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent,RegisterComponent],
@@ -40,7 +41,7 @@ import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
     DemoMaterialModule, BrowserAnimationsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

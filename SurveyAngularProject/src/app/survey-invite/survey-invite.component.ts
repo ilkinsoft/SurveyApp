@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-survey-invite',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyInviteComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<SurveyInviteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
   }
 
+  cancel(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+export interface DialogData {
+  animal: string;
+  name: string;
 }
