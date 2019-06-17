@@ -17,6 +17,7 @@ export class SurveyComponent {
 
 
 
+
   displayedColumns = ['index', 'title', 'createdAt', 'createdBy'];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
