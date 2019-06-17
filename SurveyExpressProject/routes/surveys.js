@@ -1,6 +1,7 @@
 
 var express = require('express');
 var router = express.Router();
+var resultData = require('../model/resultData');
 const MongoClient = require('mongodb').MongoClient
 const uri = "mongodb+srv://admin:surveysystem1234@cluster0-4k3cn.gcp.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true })
@@ -38,9 +39,14 @@ router.get('/', async function (req, res, next) {
 
 router.post('/add', async function (req, res, next) {
 
+    console.log(req.body)
+
     if (!req.body) {
         // 400 Bad Request
-        res.status(400).send('This is a bad request, make sure all fields are correct.')
+        // res.status(400).send('This is a bad request, make sure all fields are correct.')
+        resultData.code = resultEnum.insertError
+        resultData.data = 'This is a bad request, make sure all fields are correct.'
+        res.json(resultData)
         return;
     }
 
@@ -51,7 +57,8 @@ router.post('/add', async function (req, res, next) {
             console.log("Error: " + err);
 
         console.log('added survey')
-        res.json(result);
+        resultData.makeSuccess();
+        res.json(resultData);
     })
 });
 
