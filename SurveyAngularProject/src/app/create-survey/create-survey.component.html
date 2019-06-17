@@ -1,286 +1,299 @@
 <div class="survey-container">
 
+  <form [formGroup]="surveyForm" (ngSubmit)='onSubmit()'>
 
-  <mat-form-field>
-    <input matInput placeholder="Title">
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title" [formControl]="surveyForm.get('title')">
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Created by">
-      <mat-option value="1">Ilkin</mat-option>
-      <mat-option value="1">Eren</mat-option>
-      <mat-option value="1">Hisham</mat-option>
-      <mat-option value="1">Andy</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Created by" [formControl]="surveyForm.get('createdBy')">
+        <mat-option value="1">Ilkin</mat-option>
+        <mat-option value="1">Eren</mat-option>
+        <mat-option value="1">Hisham</mat-option>
+        <mat-option value="1">Andy</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker1" placeholder="Created at" [formControl]="date">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 1
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-
-    </mat-expansion-panel>
-  </mat-accordion>
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 2
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Created at" [formControl]="date"
+        [formControl]="surveyForm.get('createdAt')">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
 
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 3
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <div formArrayName="questions" *ngFor="let question of surveyForm.get('questions').controls; let i = index;">
 
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+      <mat-accordion [formGroupName]="i">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Question {{i+1}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your question and choices
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field class="fullWidth">
+            <input matInput placeholder="Question {{i+1}}" formControlName="question">
+          </mat-form-field>
 
+          <div formArrayName="choices" *ngFor="let choice of question.choices; let k = index;">
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 4
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 4">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+            <mat-form-field [formGroupName]="k">
+              <input matInput placeholder="Choice {{k+1}}" formControlName="choice">
+            </mat-form-field>
+          </div>
+
+          <!-- <mat-form-field>
+            <input matInput placeholder="Choice 2">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Choice 3">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Choice 4">
+          </mat-form-field> -->
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
 
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 5
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <!-- 
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 2
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 5">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 6
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 6">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
 
 
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 3
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 7
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your question and choices
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 7">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 1">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 2">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 3">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Choice 4">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 8
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your open-ended question
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 8">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 9
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your open-ended question
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 9">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
 
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Question 10
-        </mat-panel-title>
-        <mat-panel-description>
-          Type your open-ended question
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 4
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 4">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-      <mat-form-field class="fullWidth">
-        <input matInput placeholder="Question 10">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 5
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 5">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
 
 
-  <button mat-button>SAVE SURVEY</button>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 6
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 6">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 7
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your question and choices
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 7">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 3">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Choice 4">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 8
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your open-ended question
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 8">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 9
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your open-ended question
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 9">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Question 10
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your open-ended question
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="fullWidth">
+          <input matInput placeholder="Question 10">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion> -->
+
+
+    <button mat-button>SAVE SURVEY</button>
+  </form>
 </div>
