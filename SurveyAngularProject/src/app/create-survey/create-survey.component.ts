@@ -115,7 +115,6 @@ export class CreateSurveyComponent implements OnInit {
     let body = JSON.parse(JSON.stringify(this.resultSurvey))
 
     this.myHttpService.post('surveys/add', body).subscribe((result: any) => {
-      //console.log("success")
 
       // console.log(this.resultSurvey)
       if (result.code === 'SUCCESS') {

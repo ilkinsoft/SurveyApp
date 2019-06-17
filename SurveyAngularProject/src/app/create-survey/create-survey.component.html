@@ -8,23 +8,6 @@
       <input matInput placeholder="Title" [formControl]="surveyForm.get('title')">
     </mat-form-field>
 
-    <!-- <mat-form-field>
-      <mat-select placeholder="Created by" [formControl]="surveyForm.get('createdBy')">
-        <mat-option value="1">Ilkin</mat-option>
-        <mat-option value="1">Eren</mat-option>
-        <mat-option value="1">Hisham</mat-option>
-        <mat-option value="1">Andy</mat-option>
-      </mat-select>
-    </mat-form-field> -->
-
-    <!-- <mat-form-field>
-      <input matInput [matDatepicker]="picker1" placeholder="Created at" [formControl]="date"
-        [formControl]="surveyForm.get('createdAt')">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field> -->
-
-
     <div formArrayName="questions" *ngFor="let question of surveyForm.get('questions').controls; let i = index;">
 
       <mat-accordion [formGroupName]="i">
@@ -68,58 +51,6 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-      <!-- <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Question {{i+1}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Type your open-ended question
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-form-field class="fullWidth">
-            <input matInput placeholder="Question {{i+1}}" formControlName="question">
-          </mat-form-field>
-        </mat-expansion-panel>
-      </mat-accordion>
-
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Question {{i+1}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Type your open-ended question
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <mat-form-field class="fullWidth">
-            <input matInput placeholder="Question {{i+1}}" formControlName="question">
-          </mat-form-field>
-        </mat-expansion-panel>
-      </mat-accordion>
-
-
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Question {{i+1}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Type your open-ended question
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <mat-form-field class="fullWidth">
-            <input matInput placeholder="Question {{i+1}}" formControlName="question">
-          </mat-form-field>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div> -->
-
-    <button mat-button>SAVE SURVEY</button>
+    <button [disabled]="!surveyForm.valid" class="btn bg-pink-400 btn-block">SAVE SURVEY</button>
   </form>
 </div>
