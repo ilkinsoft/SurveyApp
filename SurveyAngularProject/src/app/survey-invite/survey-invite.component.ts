@@ -31,7 +31,7 @@ export class SurveyInviteComponent implements OnInit {
 
   inviteUser():void {
     console.log(this.data);
-    this.httpService.post('survey/inviteToSurvey',JSON.stringify(this.data))
+    this.httpService.post('surveys/inviteToSurvey',JSON.stringify(this.data))
       .subscribe(result=>{
         this._snackBar.open('User invited succesfully', '', {
           duration: 2000,

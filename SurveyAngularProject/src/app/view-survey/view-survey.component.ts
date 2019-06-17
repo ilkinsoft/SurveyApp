@@ -40,7 +40,7 @@ export class ViewSurveyComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe( params => {
-      this.httpService.get('survey/viewDetails/'+params['surveyId'])
+      this.httpService.get('surveys/viewDetails/'+params['surveyId'])
       .subscribe((result:MumSurvey)=>{
         this.initializeSurvey(result);
       });
@@ -74,7 +74,7 @@ export class ViewSurveyComponent implements OnInit {
   submitAnwsers(answers){
     console.log(answers);
     let data = {"user_id":"1", answers};
-    this.httpService.post('survey/postSurveyAnswers',JSON.stringify(data))
+    this.httpService.post('surveys/postSurveyAnswers',JSON.stringify(data))
       .subscribe(result=>{
         console.log(result);
       })
