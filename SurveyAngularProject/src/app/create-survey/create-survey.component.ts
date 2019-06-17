@@ -17,6 +17,8 @@ export class CreateSurveyComponent implements OnInit {
   choices: [];
   choiceList: any;
 
+  resultSurvey={title:"",createdBy:"",createdAt:"",questions:[]};
+
   constructor(private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService) {
 
     this.surveyForm = formBuilder.group({
@@ -80,7 +82,36 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   onSubmit(): void {
+
+    this.resultSurvey.title=this.surveyForm.value.title;
+    this.resultSurvey.createdBy="somebody";
+    this.resultSurvey.createdAt= new Date().toString();
+    this.resultSurvey.questions=[];
+
+    //console.log(this.surveyForm.value.questions);
+
+    for(let i=0;i<this.surveyForm.value.questions.length;i++){
+      let tempQuestion = this.surveyForm.value.questions[i];
+      //console.log("boommmmtemp"+tempQuestion);
+      let textOfQuestion = tempQuestion.question;
+      let choices=[];
+      choices.push(tempQuestion.choice1);
+      choices.push(tempQuestion.choice2);
+      choices.push(tempQuestion.choice3);
+      choices.push(tempQuestion.choice4);
+
+      let questionObject={question:{},choices:[]};
+      questionObject.question=textOfQuestion;
+      questionObject.choices=choices;
+
+      this.resultSurvey.questions.push(questionObject);
+
+    }
+
+
     console.log(this.surveyForm.value);
+    console.log(this.resultSurvey);
+
   }
 
 }
