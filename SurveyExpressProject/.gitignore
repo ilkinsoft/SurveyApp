@@ -25,9 +25,7 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
-<<<<<<< HEAD
 # Testing file Requests
 REQUEST TEST
 =======
 routes/Credentials.js
->>>>>>> 0f11d57b339912673561518df51e788fe555285e
