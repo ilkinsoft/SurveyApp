@@ -1,8 +1,27 @@
-<ul>
+<!-- <ul>
   <div *ngFor="let question of questions ">
     <div *ngIf="question.choices.length > 0 ">
       <app-mulitchoisequestion [question]='question'> </app-mulitchoisequestion>
     </div>
-    <div  *ngIf="question.choices.length == 0 "> <app-articlequestion [question]='question'></app-articlequestion> </div>
+    <div *ngIf="question.choices.length == 0 ">
+      <app-articlequestion [question]='question'></app-articlequestion>
+    </div>
+
+   
   </div>
-</ul>
+</ul> -->
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6" *ngFor="let question of questions">
+      <div  *ngIf="question.choices.length > 0">
+          <app-mulitchoisequestion [question]='question'> </app-mulitchoisequestion>
+      </div>
+      <div  *ngIf="question.choices.length == 0">
+          <app-articlequestion [question]='question'></app-articlequestion>
+      </div>
+    </div>
+   
+  </div>
+</div>

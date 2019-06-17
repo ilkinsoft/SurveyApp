@@ -1,14 +1,23 @@
-<div class="container" >
-  <div class="col-sm-4 text-center">
-    <h2 class="text-center">{{question.question}}</h2>
-    <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [options]="pieChartOptions"
-          [colors]="colors"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-      </div>
-      
-</div>
+
+
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{question.question}}</mat-card-title>
+      <mat-card-subtitle>Voted by: {{question.answers.length}} users</mat-card-subtitle>
+    </mat-card-header>
+   
+ 
+    <mat-card-content>
+        <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="colors"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </mat-card-content>
+  </mat-card>
+
