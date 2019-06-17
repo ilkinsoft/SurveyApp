@@ -6,6 +6,8 @@ var path = require('path');
 var cors = require('cors');
 const creditional= require('./routes/Credentials');
 
+var authMiddleware = require('./middlewares/AuthMiddleware');
+
 const mangoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -14,12 +16,14 @@ const url = "mongodb+srv://" +creditional.userName + ":"+creditional.password+"@
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var survaysRouter = require('./routes/survey');
+var surveysRouter = require('./routes/surveys');
 
 
 var app = express();
 
 app.use(cors());
+
+//todo app.use(authMiddleware.authenticate())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/survay', survaysRouter);
+app.use('/surveys', surveysRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

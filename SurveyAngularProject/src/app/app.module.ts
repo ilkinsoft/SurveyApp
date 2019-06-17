@@ -14,13 +14,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material-module';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import {ToastrModule} from "ngx-toastr";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, CreateSurveyComponent, RegisterComponent],
 
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,

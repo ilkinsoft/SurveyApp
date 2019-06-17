@@ -25,9 +25,16 @@ router.use((req, res, next) => {
 
 
 router.get('/:username', async function (req, res, next) {
-    let doc = await req.DB.collection("surveys").find({"createdBy": req.params.username}).toArray();
+    let doc = await req.DB.collection("surveys").find({ "createdBy": req.params.username }).toArray();
     // console.dir(doc)
-    res.json(doc)});
+    res.json(doc)
+});
+
+/* GET users listing. */
+router.get('/', async function (req, res, next) {
+    var data = await req.DB.collection("surveys").find({}).toArray();
+    res.json(data);
+});
 
 router.post('/add', async function (req, res, next) {
 

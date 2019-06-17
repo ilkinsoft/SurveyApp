@@ -46,7 +46,7 @@ export class CreateSurveyComponent implements OnInit {
   createQuestion(): FormGroup {
     return this.formBuilder.group({
       'question': ['', Validators.compose([Validators.required])],
-      'choices': this.formBuilder.array([this.createChoice()])
+      'choices': this.formBuilder.array(this.choices)
     });
   }
 
@@ -60,21 +60,20 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   addChoice(): void {
-    // this.choiceList = this.surveyForm.get('choices') as FormArray;
+    this.choiceList = this.surveyForm.get('choices') as FormArray;
 
     // this.choiceList = this.questionList.controls[0].controls.choices;
     // console.log(this.choiceList)
     // for (let i = 0; i < this.questionList.length; i++) {
     //   this.questionList[i].push(this.createChoice())
     // }
-    // this.choiceList.value.push(this.createChoice());
+    // this.choiceList.push(this.createChoice());
   }
 
   ngOnInit() {
   }
 
   onSubmit(): void {
-
     console.log(this.surveyForm.value);
   }
 

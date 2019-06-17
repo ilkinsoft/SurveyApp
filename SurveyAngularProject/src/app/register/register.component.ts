@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {MyHttpServiceService} from "../services/MyHttpService";
+import { ToastrService } from 'ngx-toastr';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
 
-  constructor( private formBuilder: FormBuilder,private myHttpService:MyHttpServiceService) {
+  constructor(private router:Router,private toastr: ToastrService,private formBuilder: FormBuilder,private myHttpService:MyHttpServiceService) {
     this.registerForm = formBuilder.group({
       'username': ['', Validators.compose([Validators.required,this.usernameValidator])],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
@@ -25,7 +27,10 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit() {
+
   }
+
+
 
 
   usernameValidator(control: FormControl): { [s: string]: boolean } {
@@ -53,10 +58,14 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
 
     this.myHttpService.post('users/',this.registerForm.value).subscribe((result: any) =>{
-      if(result.status === 'SUCCESS'){
-        //this.notificationService.sendMessage('Congrats','success');
+      //console.log("success")
+
+      if(result.code === 'SUCCESS'){
+        this.toastr.success('Registered successfully, now time to login!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
+        this.router.navigate(['/login'])
       }else{
-        //this.notificationService.sendMessage(result.status,'error');
+        this.toastr.error("Something went wrong!", 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
+
       }
       console.log(result);
     });
