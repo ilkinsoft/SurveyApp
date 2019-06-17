@@ -6,9 +6,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './routing';
 import { HomeComponent } from './home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -17,14 +17,24 @@ import {DemoMaterialModule} from './material-module';
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
 import { SurveyComponent } from './survey/survey.component';
-import { HttpClientModule } from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
-import { SurveyService } from './survey.service';
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import { SurveyCreatorComponent } from './survey-creator/survey-creator.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent,RegisterComponent],
+  declarations: [AppComponent, 
+    HeaderComponent, 
+    FooterComponent, 
+    LoginComponent, 
+    HomeComponent,
+    RegisterComponent,
+    SurveyComponent,
+    SurvayDetailsComponent,
+    SurveyInviteComponent,
+    ViewSurveyComponent,
+    SurveyCreatorComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -35,13 +45,12 @@ import { SurveyService } from './survey.service';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     DemoMaterialModule, BrowserAnimationsModule,
     ChartsModule
   ],
-  providers: [SurveyService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

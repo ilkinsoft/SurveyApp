@@ -37,7 +37,7 @@ export class SurveyComponent {
   }
 
   set_products(){
-    this.httpClient.get('http://localhost:3000/survay').subscribe((res)=>{
+    this.httpClient.get('http://localhost:3000/survey').subscribe((res)=>{
         console.log(JSON.stringify(res));
         this.ELEMENT_DATA = JSON.parse(JSON.stringify(res));
         this.dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
@@ -53,9 +53,9 @@ export class SurveyComponent {
       data: {surveyId:data._id}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed: ' + result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed: ' + result);
+    // });
   }
 }
 
