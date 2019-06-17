@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { CreateSurveyComponent } from './create-survey/create-survey.component';
-import { RegisterComponent } from "./register/register.component";
 import { SurveyComponent } from './survey/survey.component';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
+import {RegisterComponent} from "./register/register.component";
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,7 +14,10 @@ const routes: Routes = [
 
   { path: 'survey', component: SurveyComponent },
   { path: 'surveyDetails', component: SurvayDetailsComponent },
+  {path: 'surveyInvite' , component: SurveyInviteComponent},
+  {path: 'viewSurvey/:surveyId' , component: ViewSurveyComponent},
   { path: '', component: HomeComponent }
+
 ];
 
 @NgModule({

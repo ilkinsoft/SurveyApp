@@ -5,6 +5,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './routing';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
@@ -12,13 +13,31 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
 import { SurveyComponent } from './survey/survey.component';
+import { HttpClientModule } from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
+import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import { SurveyCreatorComponent } from './survey-creator/survey-creator.component';
+
+@NgModule({
+  declarations: [AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent,
+    SurveyComponent,
+    SurvayDetailsComponent,
+    SurveyInviteComponent,
+    ViewSurveyComponent,
+    MulitchoiseQuestionComponent,
+    ArticleQuestionComponent,
+    SurveyCreatorComponent],
 import { MulitchoiseQuestionComponent } from './mulitchoise-question/mulitchoise-question.component';
 import { ArticleQuestionComponent } from './article-question/article-question.component';
 import { MomentModule } from 'angular2-moment';
@@ -38,7 +57,7 @@ import { MomentModule } from 'angular2-moment';
     MomentModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    DemoMaterialModule,
+    DemoMaterialModule, BrowserAnimationsModule,
     ChartsModule
   ],
   providers: [],

@@ -6,6 +6,8 @@ import { Element } from '@angular/compiler';
 import { Router } from '@angular/router';
 
 
+import { SurveyInviteComponent } from '../survey-invite/survey-invite.component';
+
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -16,15 +18,15 @@ export class SurveyComponent {
   ELEMENT_DATA: Element[];
 
 
-
-
-  displayedColumns = ['index', 'title', 'createdAt', 'createdBy'];
+  displayedColumns = ['index' , 'title', 'createdAt', 'createdBy','actions'];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-
+  /**
+   * Set the paginator after the view init since this component will
+   * be able to query its view for the initialized paginator.
+   */
   ngAfterViewInit() {
-
   }
 
   returnedData: string;
@@ -32,7 +34,7 @@ export class SurveyComponent {
     this.set_products();
   }
 
-  getRecord(data) {
+  viewDetails(data){
     this.router.navigate(['./surveyDetails',{"id" :data._id }]);
   }
 
@@ -45,6 +47,18 @@ export class SurveyComponent {
 
     });
   }
+
+  openDialog(data): void {
+    const dialogRef = this.dialog.open(SurveyInviteComponent, {
+      height: '200px',
+      width: '600px',
+      data: {surveyId:data._id}
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed: ' + result);
+    // });
+  }
 }
 
 export interface Element {
@@ -53,3 +67,5 @@ export interface Element {
   createdBy: string;
   createdAt: string;
 }
+
+
