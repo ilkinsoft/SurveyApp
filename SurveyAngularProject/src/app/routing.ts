@@ -6,6 +6,8 @@ import { SurveyComponent } from './survey/survey.component';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import {RegisterComponent} from "./register/register.component";
 import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import {CreateSurveyComponent} from "./create-survey/create-survey.component";
+import {SurveyInviteComponent} from "./survey-invite/survey-invite.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

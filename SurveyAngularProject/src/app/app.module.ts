@@ -8,8 +8,6 @@ import { RegisterComponent } from './register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './routing';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
-
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
@@ -23,11 +21,15 @@ import { ChartsModule } from 'ng2-charts';
 import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
 import { ViewSurveyComponent } from './view-survey/view-survey.component';
 import { SurveyCreatorComponent } from './survey-creator/survey-creator.component';
+import {MulitchoiseQuestionComponent} from "./mulitchoise-question/mulitchoise-question.component";
+import {ArticleQuestionComponent} from "./article-question/article-question.component";
+import {MomentModule} from "angular2-moment";
 
 @NgModule({
   declarations: [AppComponent,
     HeaderComponent,
     FooterComponent,
+    CreateSurveyComponent,
     LoginComponent,
     HomeComponent,
     RegisterComponent,
@@ -38,12 +40,8 @@ import { SurveyCreatorComponent } from './survey-creator/survey-creator.componen
     MulitchoiseQuestionComponent,
     ArticleQuestionComponent,
     SurveyCreatorComponent],
-import { MulitchoiseQuestionComponent } from './mulitchoise-question/mulitchoise-question.component';
-import { ArticleQuestionComponent } from './article-question/article-question.component';
-import { MomentModule } from 'angular2-moment';
 
-@NgModule({
-  declarations: [RegisterComponent,CreateSurveyComponent,AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent, MulitchoiseQuestionComponent, ArticleQuestionComponent],
+
   imports: [
     BrowserModule,
     CommonModule,

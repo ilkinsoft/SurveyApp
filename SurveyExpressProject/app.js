@@ -16,7 +16,7 @@ const url = "mongodb+srv://" +creditional.userName + ":"+creditional.password+"@
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var survaysRouter = require('./routes/survey');
+var survaysRouter = require('./routes/surveys');
 
 
 var app = express();
@@ -60,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/surveys', surveysRouter);
+app.use('/surveys', survaysRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

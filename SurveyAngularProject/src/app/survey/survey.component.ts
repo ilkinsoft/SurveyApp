@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { element } from 'protractor';
 import { Element } from '@angular/compiler';
@@ -30,7 +30,7 @@ export class SurveyComponent {
   }
 
   returnedData: string;
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router,private dialog: MatDialog) {
     this.set_products();
   }
 
