@@ -32,7 +32,6 @@ app.set('view engine', 'jade');
 
 let DB = null;
 
-
 app.use(async (req, res, next) => {
   try {
     if (DB) {

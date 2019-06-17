@@ -4,13 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import { RegisterComponent } from "./register/register.component";
+import { SurveyComponent } from './survey/survey.component';
+import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-survey', component: CreateSurveyComponent },
 
-  {path: '' , component: LoginComponent}
+  { path: 'survey', component: SurveyComponent },
+  { path: 'surveyDetails', component: SurvayDetailsComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,23 @@
+
+
+
+<mat-card class="question-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{question.question}}</mat-card-title>
+      <mat-card-subtitle>Voted by: {{question.answers.length}} users</mat-card-subtitle>
+    </mat-card-header>
+   
+ 
+    <mat-card-content>
+        <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="colors"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </mat-card-content>
+  </mat-card>
+
