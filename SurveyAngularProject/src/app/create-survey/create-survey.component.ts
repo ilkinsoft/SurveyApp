@@ -25,8 +25,6 @@ export class CreateSurveyComponent implements OnInit {
     this.surveyForm = formBuilder.group({
 
       'title': ['', Validators.compose([Validators.required])],
-      'createdBy': ['', Validators.compose([Validators.required, Validators.email])],
-      'createdAt': ['', Validators.compose([Validators.required])],
       'questions': this.formBuilder.array([this.createQuestion()]),
     });
 

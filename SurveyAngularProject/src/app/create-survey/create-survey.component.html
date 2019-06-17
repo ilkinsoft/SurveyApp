@@ -52,5 +52,10 @@
       </mat-accordion>
     </div>
     <button [disabled]="!surveyForm.valid" class="btn bg-pink-400 btn-block">SAVE SURVEY</button>
+
+    <div *ngIf="!surveyForm.valid">
+      Survey is not valid
+    </div>
+
   </form>
 </div>
