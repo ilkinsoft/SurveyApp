@@ -34,8 +34,8 @@ export class CreateSurveyComponent implements OnInit {
     for (let i = 0; i < 6; i++) {
       this.addQuestion()
     }
-    for (let k = 0; k < 3; k++)
-      this.addChoice()
+    // for (let k = 0; k < 3; k++)
+    //   this.addChoice()
   }
 
   addQuestion(): void {
@@ -46,7 +46,7 @@ export class CreateSurveyComponent implements OnInit {
   createQuestion(): FormGroup {
     return this.formBuilder.group({
       'question': ['', Validators.compose([Validators.required])],
-      'choices': this.formBuilder.array(this.choices)
+      'choices': this.formBuilder.array([this.createChoice()])
     });
   }
 

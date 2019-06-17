@@ -39,11 +39,28 @@
             <input matInput placeholder="Question {{i+1}}" formControlName="question">
           </mat-form-field>
 
-          <div formArrayName="choices" *ngFor="let choice of question.get('choices').controls; let k = index;">
+          <div formArrayName="choices">
+            <!-- <div *ngFor="let choice of question.get('choices').controls; let k = index;" [formGroupName]="k">
+              <mat-form-field >
+                <input matInput placeholder="Choice {{k+1}}" formControlName="choice">
+              </mat-form-field>
+            </div>
+ -->
+            <div [formGroupName]="k">
+              <mat-form-field>
+                <input matInput placeholder="Choice 1" formControlName="choice1">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 2" formControlName="choice2">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 3" formControlName="choice3">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 4" formControlName="choice4">
+              </mat-form-field>
+            </div>
 
-            <mat-form-field [formGroupName]="k">
-              <input matInput placeholder="Choice {{k+1}}" formControlName="choice">
-            </mat-form-field>
           </div>
 
           <!-- <mat-form-field>
