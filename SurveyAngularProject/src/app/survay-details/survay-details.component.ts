@@ -20,7 +20,7 @@ export class SurvayDetailsComponent {
   }
 
   set_products() {
-    this.httpClient.get('http://localhost:3000/survay/serveyId/' + this.id).subscribe((res) => {
+    this.httpClient.get('http://localhost:3000/surveys/serveyId/' + this.id).subscribe((res) => {
       this.data = JSON.parse(JSON.stringify(res));
       console.log(JSON.stringify(this.data))
       this.questions = this.data.questions;
