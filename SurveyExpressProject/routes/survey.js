@@ -38,13 +38,30 @@ router.get('/serveyId/:id', async function (req, res, next) {
         newData.questions[x].answerStatistic[i] = 0
       }
       for (let i = 0; i < data.questions[x].answers.length; i++) {
-        newData.questions[x].answerStatistic[data.questions[x].answers[i].answer] +=  1
-        console.log(data.questions[x].answers[i].answer+ " is " +newData.questions[x].answerStatistic[data.questions[x].answers[i].answer] )
+        newData.questions[x].answerStatistic[data.questions[x].answers[i].answer] += 1
+        console.log(data.questions[x].answers[i].answer + " is " + newData.questions[x].answerStatistic[data.questions[x].answers[i].answer])
+      }
+    } else {
+      newData.questions[x].articleAnswer = [];
+      for (let i = 0; i < data.questions[x].answers.length; i++) {
+        var currentanswer = data.questions[x].answers[i];
+        var index = newData.questions[x].articleAnswer.map(function (e) { return e.answer; }).indexOf(currentanswer.answer)
+        if (index > -1) {
+          newData.questions[x].articleAnswer[index].count += 1;
+        }
+        else {
+          let obj = {};
+          obj.answer = data.questions[x].answers[i].answer;
+          obj.count = 1;
+          newData.questions[x].articleAnswer.push(obj)
+
+
+        }
       }
     }
 
   }
-  // console.log(newData)
+  console.log(newData)
   res.json(newData);
 });
 

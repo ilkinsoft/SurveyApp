@@ -15,14 +15,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { MulitchoiseQuestionComponent } from './mulitchoise-question/mulitchoise-question.component';
+import { ArticleQuestionComponent } from './article-question/article-question.component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent, MulitchoiseQuestionComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent, MulitchoiseQuestionComponent, ArticleQuestionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MomentModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     DemoMaterialModule, BrowserAnimationsModule,

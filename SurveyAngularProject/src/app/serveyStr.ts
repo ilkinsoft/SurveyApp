@@ -1,23 +1,26 @@
 
 
-    export interface Answer {
-        user_id: string;
-        answer: string;
-    }
+export interface Answer {
+    user_id: string;
+    answer: string;
+}
 
-    export interface Question {
-        question: string;
-        choices: string[];
-        answers: Answer[];
-        answerStatistic : number[]
-    }
+export interface ArticleAnswer {
+    answer: string;
+    count: number;
+}
 
-    export interface RootObject {
-        _id: string;
-        title: string;
-        createdBy: string;
-        createdAt: Date;
-        questions: Question[];
-    }
+export interface Question {
+    question: string;
+    choices: string[];
+    answers: Answer[];
+    answerStatistic: number[];
+    articleAnswer: ArticleAnswer[];
+}
 
-
+export interface RootObject {
+    title: string;
+    createdBy: string;
+    createdAt: Date;
+    questions: Question[];
+}

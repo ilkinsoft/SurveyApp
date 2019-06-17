@@ -30,13 +30,14 @@ export class MulitchoiseQuestionComponent implements OnInit {
     ]
   }
 
-  // events on slice click
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  // event on pie chart slice hover
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
+  public  colors = [
+    { // 1st Year.
+      backgroundColor: [
+        "#FF6384",
+        "#4BC0C0",
+        "#FFCE56",
+        "#36A2EB"
+      ]
+    }]
+    
 }

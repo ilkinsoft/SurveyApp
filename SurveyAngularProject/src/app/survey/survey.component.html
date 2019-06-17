@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="createdAt">
       <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+      <mat-cell *matCellDef="let element">{{element.createdAt | amDateFormat:' MMMM Do YYYY, h:mm a'}} </mat-cell>
     </ng-container>
 
     <!-- Voting Column -->
