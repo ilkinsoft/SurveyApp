@@ -16,10 +16,20 @@ import {DemoMaterialModule} from './material-module';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DemoMaterialModule } from './material-module';
+import { SurveyComponent } from './survey/survey.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SurvayDetailsComponent } from './survay-details/survay-details.component';
+import { ChartsModule } from 'ng2-charts';
+import { MulitchoiseQuestionComponent } from './mulitchoise-question/mulitchoise-question.component';
+import { ArticleQuestionComponent } from './article-question/article-question.component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, CreateSurveyComponent, RegisterComponent],
-
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LoginComponent, HomeComponent, SurveyComponent, SurvayDetailsComponent, MulitchoiseQuestionComponent, ArticleQuestionComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -27,13 +37,14 @@ import {CommonModule} from "@angular/common";
     ToastrModule.forRoot({
       preventDuplicates: true
     }),
-    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
+    MomentModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     DemoMaterialModule,
-    BrowserAnimationsModule
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

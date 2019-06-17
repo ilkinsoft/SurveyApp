@@ -1,0 +1,40 @@
+<h1>List of surveys </h1>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Number Column -->
+
+
+    <!-- Title Column -->
+
+    <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> index </mat-header-cell>
+        <mat-cell *matCellDef="let element let i = index"> {{i + 1}}
+        </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.createdAt | amDateFormat:' MMMM Do YYYY, h:mm a'}} </mat-cell>
+    </ng-container>
+
+    <!-- Voting Column -->
+    <ng-container matColumnDef="createdBy">
+      <mat-header-cell *matHeaderCellDef> # of voting </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.questions[0].answers.length}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
