@@ -5,7 +5,6 @@ var resultData = require('../model/resultData');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
 var util = require('util');
-const MongoClient = require('mongodb').MongoClient
 
 var ObjectID = require('mongodb').ObjectID;
 const cred= require('./Creditionals');
