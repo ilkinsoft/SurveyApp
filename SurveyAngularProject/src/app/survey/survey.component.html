@@ -26,7 +26,7 @@
      <!-- Voting Column -->
      <ng-container matColumnDef="createdBy">
        <mat-header-cell *matHeaderCellDef> # of voting </mat-header-cell>
-       <mat-cell *matCellDef="let element"> {{element.questions.length}} </mat-cell>
+       <mat-cell *matCellDef="let element"> {{element.questions[0].answers.length}} </mat-cell>
      </ng-container>
  
      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
