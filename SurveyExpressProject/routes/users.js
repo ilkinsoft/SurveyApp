@@ -13,7 +13,7 @@ router.get('/',async function(req, res, next) {
 });
 
 
-router.post('/',async function(req, res, next) {
+router.post('/register',async function(req, res, next) {
   // let user = {
   //   "username": "Asaad",
   //   "email": "asaadsaad@mum.edu"

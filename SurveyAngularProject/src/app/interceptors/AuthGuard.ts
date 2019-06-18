@@ -16,13 +16,12 @@ export class AuthorizationGuard implements CanActivate {
       this.router.navigate(['login']);
     }
 
-    //todo role control:
-    if (route && route.url.length > 0 && route.url[0].path === 'users') {
+/*    if (route && route.url.length > 0 && route.url[0].path === 'users') {
       const  userParsed : any = JSON.parse(user);
       if (userParsed.role != 'admin') {
         this.router.navigate(['login']);
       }
-    }
+    }*/
     return true;
   }
 

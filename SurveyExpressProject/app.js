@@ -23,7 +23,11 @@ var app = express();
 
 app.use(cors());
 
-//todo app.use(authMiddleware.authenticate())
+
+
+app.use(function (req, res, next) {
+  authMiddleware.authenticate(req,res,next)
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

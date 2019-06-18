@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
 import { SurveyComponent } from './survey/survey.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SurvayDetailsComponent } from './survay-details/survay-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { SurveyInviteComponent } from './survey-invite/survey-invite.component';
@@ -24,6 +24,10 @@ import { SurveyCreatorComponent } from './survey-creator/survey-creator.componen
 import {MulitchoiseQuestionComponent} from "./mulitchoise-question/mulitchoise-question.component";
 import {ArticleQuestionComponent} from "./article-question/article-question.component";
 import {MomentModule} from "angular2-moment";
+import {AuthInterceptor} from "./interceptors/authInterceptor";
+import {AuthorizationGuard} from "./interceptors/AuthGuard";
+import {NotificationService} from "./services/NotificationService";
+
 
 @NgModule({
   declarations: [AppComponent,
@@ -58,7 +62,15 @@ import {MomentModule} from "angular2-moment";
     DemoMaterialModule, BrowserAnimationsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    AuthorizationGuard,
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

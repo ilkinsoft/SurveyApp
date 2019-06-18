@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
 
-    this.myHttpService.post('users/',this.registerForm.value).subscribe((result: any) =>{
+    this.myHttpService.post('users/register',this.registerForm.value).subscribe((result: any) =>{
       //console.log("success")
 
       if(result.code === 'SUCCESS'){
