@@ -181,8 +181,7 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
   router.post('/completeSurvey', async function(req, res) {
     let survey = req.body;
   
-    let surveyId = new ObjectId(survey.surveyId);
-    let index = req.body
+    let surveyId = new ObjectID(survey.surveyId);
 
     // var result = Object.keys(obj).map(function(key) {
     //     return [Number(key), obj[key]];
@@ -190,10 +189,18 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
       
     //   console.log(result);
 
-    console.log(index);
-    await req.DB.collection("surveys").update({ _id: surveyId}, {
-        $push: {"questions.[index].answers":{"email":"test@test1.com","answer":1}}
-    })
+    let answsersMain = Object.keys(survey.answers).map(function(key) {
+        return survey.answers[key];
+      });
+      
+      
+    for (var i = 0; i < answsersMain.length; i++) {
+        var ind = "questions." +i+ ".answers";
+        await req.DB.collection("surveys").updateOne({ _id: surveyId}, {
+            $push: {[ind]:{"answer":answsersMain[i]}}
+        })
+    }
+    res.json({ 'status': 'success' });
   });
 
 
