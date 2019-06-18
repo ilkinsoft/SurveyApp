@@ -161,7 +161,7 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
       let emailHTMLFileStr = emailHTMLFile.toString().
           replace("{{httpLink}}", "http://localhost:4200/viewSurvey/"+req.body.surveyId+"/"+req.body.email)
       var mailOptions = {
-        from: 'mwamum362@gmail.com',
+        from: cred.userEmail,
         to: req.body.email,
         subject: 'Please this survey',
         html: emailHTMLFileStr
