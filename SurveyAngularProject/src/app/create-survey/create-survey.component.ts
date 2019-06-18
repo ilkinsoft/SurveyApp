@@ -28,7 +28,7 @@ export class CreateSurveyComponent implements OnInit {
       'questions': this.formBuilder.array([this.createQuestion()]),
     });
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       this.addQuestion()
     }
     // for (let k = 0; k < 3; k++)
@@ -54,8 +54,11 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   parseJson() {
+
+    let user = JSON.parse(localStorage.getItem('user'));
+
     this.resultSurvey.title = this.surveyForm.value.title;
-    this.resultSurvey.createdBy = "somebody";
+    this.resultSurvey.createdBy = user.username;
     this.resultSurvey.createdAt = new Date().toString();
     this.resultSurvey.questions = [];
 
@@ -64,7 +67,7 @@ export class CreateSurveyComponent implements OnInit {
       let textOfQuestion = tempQuestion.question;
       let choices = [];
 
-      if (i < 4) // for multi-choice questions add choices
+      if (i < 3) // for multi-choice questions add choices
       {
         choices.push(tempQuestion.choice1);
         choices.push(tempQuestion.choice2);
