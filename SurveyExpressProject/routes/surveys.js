@@ -7,8 +7,6 @@ var fs = require('fs');
 var util = require('util');
 const MongoClient = require('mongodb').MongoClient
 
-let db
-let collection
 var ObjectID = require('mongodb').ObjectID;
 const cred= require('./Creditionals');
 const Question = require('../model/SurveyData').Question;
@@ -90,7 +88,7 @@ router.post('/add', async function (req, res, next) {
 
     // res.send(survey);
 
-    await collection.insertOne(req.body, function (err, result) {
+    await req.DB.collection('surveys').insertOne(req.body, function (err, result) {
         if (err)
             console.log("Error: " + err);
 
