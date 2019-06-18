@@ -6,8 +6,7 @@ var nodemailer = require('nodemailer');
 var fs = require('fs');
 var util = require('util');
 const MongoClient = require('mongodb').MongoClient
-const uri = "mongodb+srv://admin:surveysystem1234@cluster0-4k3cn.gcp.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true })
+
 let db
 let collection
 var ObjectID = require('mongodb').ObjectID;
@@ -16,21 +15,7 @@ const Question = require('../model/SurveyData').Question;
 const Choice = require('../model/SurveyData').Choice;
 
 
-router.use((req, res, next) => {
-    if (!db) {
-        client.connect(function (err) {
-            db = client.db('mwa')
-            req.db = db
-            collection = db.collection('surveys')
-            next()
-        })
-    }
-    else {
-        req.db = db
-        collection = db.collection('surveys')
-        next()
-    }
-})
+
 
 
 router.get('/serveyId/:id', async function (req, res, next) {
