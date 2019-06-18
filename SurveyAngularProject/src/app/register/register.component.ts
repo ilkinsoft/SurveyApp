@@ -57,14 +57,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
 
-    this.myHttpService.post('users/',this.registerForm.value).subscribe((result: any) =>{
+    this.myHttpService.post('users/register',this.registerForm.value).subscribe((result: any) =>{
       //console.log("success")
 
       if(result.code === 'SUCCESS'){
         this.toastr.success('Registered successfully, now time to login!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
         this.router.navigate(['/login'])
       }else{
-        this.toastr.error("Something went wrong!", 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
+        this.toastr.error(result.data, 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
 
       }
       console.log(result);

@@ -27,9 +27,7 @@ benchmarks/graphs
 
 # Testing file Requests
 REQUEST TEST
-routes/Credentials.js
 routes/Creditionals.js
-
 Credential.js
 
 .history/*

@@ -23,7 +23,11 @@ var app = express();
 
 app.use(cors());
 
-//todo app.use(authMiddleware.authenticate())
+
+
+app.use(function (req, res, next) {
+  authMiddleware.authenticate(req,res,next)
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +46,9 @@ app.use(async (req, res, next) => {
      client =  await mangoClient.connect(url , { useNewUrlParser: true });
       DB = client.db('mwa');
       req.DB = DB;
+
+      DB.collection('users').createIndex({username:1},{unique:true});
+      DB.collection('users').createIndex({email:1},{unique:true});
     }
     next()
   } catch (error) {
@@ -49,6 +56,10 @@ app.use(async (req, res, next) => {
   }
 
 })
+
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());

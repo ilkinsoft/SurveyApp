@@ -1,19 +1,21 @@
 const jwt = require('../jwtHelper/jwtTokenHelper')
 
 class AuthenticateMiddleware {
-    //todo edit it
     authenticate(req, res, next) {
+
+        //console.log('req.url ' + req);
 
         console.log('req.url ' + req.url);
 
-        if (req.url === '/api/users/login'
-            || req.url === '/api/users/register'
-            || req.url === '/api/users/login/'
-            || req.url === '/api/users/register/') {
+        if (req.url === '/users/login'
+            || req.url === '/users/register' || req.url.includes( '/surveys/viewDetails') || req.url.includes( '/completeSurvey')
+            ) {
             next();
             return;
         } else {
             const authHeader = req.headers.authorization
+
+            console.log("authHeader: "+authHeader)
 
             if (!authHeader) {
                 return res.status(403).json({
@@ -30,6 +32,8 @@ class AuthenticateMiddleware {
                 }
                 const token = splitted[1];
                 var user = jwt.verify(token);
+                req.user=user;
+                console.log(user);
                 if (!user) {
                     return res.status(403).json({
                         status: 403,
@@ -37,14 +41,14 @@ class AuthenticateMiddleware {
                     })
                 }
 
-                if (req.url === '/api/users' || req.url === '/api/users/') {
+/*                if (req.url === '/api/users' || req.url === '/api/users/') {
                     if (!user.role || user.role != 'admin') {
                         return res.status(403).json({
                             status: 403,
                             message: 'FORBIDDEN'
                         })
                     }
-                }
+                }*/
 
                 next();
             }

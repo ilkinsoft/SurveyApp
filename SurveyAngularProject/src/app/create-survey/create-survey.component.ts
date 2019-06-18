@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MyHttpServiceService } from '../services/MyHttpService';
 import { ToastrService } from 'ngx-toastr';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-survey',
@@ -20,7 +21,7 @@ export class CreateSurveyComponent implements OnInit {
 
   resultSurvey = { title: "", createdBy: "", createdAt: "", questions: [] };
 
-  constructor(private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
+  constructor(private router:Router,private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
 
     this.surveyForm = formBuilder.group({
 
@@ -28,7 +29,7 @@ export class CreateSurveyComponent implements OnInit {
       'questions': this.formBuilder.array([this.createQuestion()]),
     });
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       this.addQuestion()
     }
     // for (let k = 0; k < 3; k++)
@@ -54,8 +55,11 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   parseJson() {
+
+    let user = JSON.parse(localStorage.getItem('user'));
+
     this.resultSurvey.title = this.surveyForm.value.title;
-    this.resultSurvey.createdBy = "somebody";
+    this.resultSurvey.createdBy = user.username;
     this.resultSurvey.createdAt = new Date().toString();
     this.resultSurvey.questions = [];
 
@@ -64,7 +68,7 @@ export class CreateSurveyComponent implements OnInit {
       let textOfQuestion = tempQuestion.question;
       let choices = [];
 
-      if (i < 4) // for multi-choice questions add choices
+      if (i < 3) // for multi-choice questions add choices
       {
         choices.push(tempQuestion.choice1);
         choices.push(tempQuestion.choice2);
@@ -92,6 +96,8 @@ export class CreateSurveyComponent implements OnInit {
       // console.log(this.resultSurvey)
       if (result.code === 'SUCCESS') {
         this.toastr.success('Yaay, Created successfully!', 'Success!', { timeOut: 2000, positionClass: 'toast-top-center' });
+        this.router.navigate(['/survey'])
+
       } else {
         this.toastr.error("Something went wrong!", 'Error :(', { timeOut: 2000, positionClass: 'toast-top-center' });
       }

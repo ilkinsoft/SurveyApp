@@ -1,58 +1,57 @@
-<h3>Create survey</h3>
+<div class="row ">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Create survey</h3>
 
+    <form [formGroup]="surveyForm" (ngSubmit)='onSubmit()'>
 
-  <div class="row" >
-    <div class="col-md-8 col-offset-md-2">
-      <form [formGroup]="surveyForm" (ngSubmit)='onSubmit()'>
+      <mat-form-field class="fullWidth">
+        <input matInput placeholder="Title" [formControl]="surveyForm.get('title')">
+      </mat-form-field>
 
-        <mat-form-field class="fullWidth">
-          <input matInput placeholder="Title" [formControl]="surveyForm.get('title')">
-        </mat-form-field>
+      <div formArrayName="questions" *ngFor="let question of surveyForm.get('questions').controls; let i = index;">
 
-        <div formArrayName="questions" *ngFor="let question of surveyForm.get('questions').controls; let i = index;">
+        <mat-accordion [formGroupName]="i">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Question {{i+1}}
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your question and choices
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Question {{i+1}}" formControlName="question">
+            </mat-form-field>
 
-          <mat-accordion [formGroupName]="i">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Question {{i+1}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  Type your question and choices
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-form-field class="fullWidth">
-                <input matInput placeholder="Question {{i+1}}" formControlName="question">
-              </mat-form-field>
-
-              <!-- <div formArrayName="choices">
+            <!-- <div formArrayName="choices">
                     <div *ngFor="let choice of question.get('choices').controls; let k = index;" [formGroupName]="k">
                       <mat-form-field>
                         <input matInput placeholder="Choice {{k+1}}" formControlName="choice">
                       </mat-form-field>
                     </div> -->
-              <!-- <div [formGroupName]="k"> -->
+            <!-- <div [formGroupName]="k"> -->
 
-              <div *ngIf="i < 4">
-                <mat-form-field>
-                  <input matInput placeholder="Choice 1" formControlName="choice1">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="Choice 2" formControlName="choice2">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="Choice 3" formControlName="choice3">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="Choice 4" formControlName="choice4">
-                </mat-form-field>
-              </div>
+            <div *ngIf="i < 3">
+              <mat-form-field>
+                <input matInput placeholder="Choice 1" formControlName="choice1">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 2" formControlName="choice2">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 3" formControlName="choice3">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Choice 4" formControlName="choice4">
+              </mat-form-field>
+            </div>
 
-            </mat-expansion-panel>
-          </mat-accordion>
-        </div>
-        <button [disabled]="!surveyForm.valid" class="btn bg-pink-400 btn-block">SAVE SURVEY</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <button [disabled]="!surveyForm.valid" class="btn bg-pink-400 btn-block">SAVE SURVEY</button>
 
-      </form>
-    </div>
+    </form>
   </div>
+</div>

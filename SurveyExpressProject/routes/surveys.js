@@ -5,32 +5,14 @@ var resultData = require('../model/resultData');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
 var util = require('util');
-const MongoClient = require('mongodb').MongoClient
-const uri = "mongodb+srv://admin:surveysystem1234@cluster0-4k3cn.gcp.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true })
-let db
-let collection
-var ObjectID = require('mongodb').ObjectID;
 
+var ObjectID = require('mongodb').ObjectID;
+const cred= require('./Creditionals');
 const Question = require('../model/SurveyData').Question;
 const Choice = require('../model/SurveyData').Choice;
 
 
-router.use((req, res, next) => {
-    if (!db) {
-        client.connect(function (err) {
-            db = client.db('mwa')
-            req.db = db
-            collection = db.collection('surveys')
-            next()
-        })
-    }
-    else {
-        req.db = db
-        collection = db.collection('surveys')
-        next()
-    }
-})
+
 
 
 router.get('/serveyId/:id', async function (req, res, next) {
@@ -79,14 +61,14 @@ router.get('/serveyId/:id', async function (req, res, next) {
 
 
 router.get('/:username', async function (req, res, next) {
-    console.log("Andy")
+    console.log("User: "+req.params.username)
     var data = await req.DB.collection("surveys").find({ "createdBy": req.params.username }).toArray();
     res.json(data);
 });
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
-    var data = await req.DB.collection("surveys").find({}).toArray();
+    var data = await req.DB.collection("surveys").find({ "createdBy": req.user.username }).toArray();
     res.json(data);
 });
 
@@ -105,7 +87,7 @@ router.post('/add', async function (req, res, next) {
 
     // res.send(survey);
 
-    await collection.insertOne(req.body, function (err, result) {
+    await req.DB.collection('surveys').insertOne(req.body, function (err, result) {
         if (err)
             console.log("Error: " + err);
 
@@ -151,17 +133,17 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
         secure: false,
         requireTLS: true,
         auth: {
-            user: 'mwamum362@gmail.com',
-            pass: 'P@ssw0rd2019'
+            user: cred.userEmail,
+            pass: cred.emailPass
         }
     });
   
       const readFile = util.promisify(fs.readFile);
       let emailHTMLFile = await readFile('email.html'); 
       let emailHTMLFileStr = emailHTMLFile.toString().
-          replace("{{httpLink}}", "http://localhost:4200/viewSurvey/"+req.body.surveyId)
+          replace("{{httpLink}}", "http://localhost:4200/viewSurvey/"+req.body.surveyId+"/"+req.body.email)
       var mailOptions = {
-        from: 'mwamum362@gmail.com',
+        from: cred.userEmail,
         to: req.body.email,
         subject: 'Please this survey',
         html: emailHTMLFileStr
@@ -180,20 +162,19 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
   
   router.post('/completeSurvey', async function(req, res) {
     let survey = req.body;
-  
-    let surveyId = new ObjectId(survey.surveyId);
-    let index = req.body
-
-    // var result = Object.keys(obj).map(function(key) {
-    //     return [Number(key), obj[key]];
-    //   });
+    let surveyId = new ObjectID(survey.surveyId);
+    let email = req.body.email;
+    let answsersMain = Object.keys(survey.answers).map(function(key) {
+        return survey.answers[key];
+      });
       
-    //   console.log(result);
-
-    console.log(index);
-    await req.DB.collection("surveys").update({ _id: surveyId}, {
-        $push: {"questions.[index].answers":{"email":"test@test1.com","answer":1}}
-    })
+    for (var i = 0; i < answsersMain.length; i++) {
+        var ind = "questions." +i+ ".answers";
+        await req.DB.collection("surveys").updateOne({ _id: surveyId}, {
+            $push: {[ind]:{"answer":answsersMain[i],"email":email}}
+        })
+    }
+    res.json({ 'status': 'success' });
   });
 
 
