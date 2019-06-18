@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,13 @@ export class MyHttpServiceService {
   };
 
   post(path: string, body: string) {
-    return this.client.post(this.baseUrl + path, body);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.client.post(this.baseUrl + path, body, {headers: headers});
   }
 
   put(path: string, body: string) {
-    return this.client.put(this.baseUrl + path, body);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.client.put(this.baseUrl + path, body, {headers: headers});
   }
 
   delete(path: string) {

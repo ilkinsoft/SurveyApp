@@ -1,20 +1,29 @@
 <div class="navbar navbar-inverse bg-indigo">
    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
+      <a class="navbar-brand" href="/survey">SURVEY SYSTEM</a>
 
       <ul class="nav navbar-nav pull-right visible-xs-block">
          <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
       </ul>
    </div>
 
-   <div class="navbar-collapse collapse" id="navbar-mobile">
-      <ul class="nav navbar-nav navbar-right">
-         <li>
-            <a href="#">
-               <i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
-            </a>
-         </li>
+   <!-- Left nav -->
+   <ul *ngIf="username" class="nav navbar-nav">
+      <li><a href="/survey">Surveys</a></li>
+      <li><a href="/create-survey">Create survey</a></li>
+   </ul>
+   <!-- /left nav -->
 
+   <ul *ngIf="username" class="nav navbar-nav navbar-right">
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{username}} <span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+               <li><a (click)="logout()">Logout</a></li>
+            </ul>
+         </li>
+      </ul>
+   <!-- <div class="navbar-collapse collapse" id="navbar-mobile">
+      <ul class="nav navbar-nav navbar-right">
          <li>
             <a href="#">
                <i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Contact admin</span>
@@ -28,6 +37,6 @@
             </a>
          </li>
       </ul>
-   </div>
+   </div> -->
 </div>
 <!-- /main navbar -->

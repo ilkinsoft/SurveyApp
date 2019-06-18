@@ -5,8 +5,10 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    //console.log("dfdfd")
 
     let token = localStorage.getItem('token');
     if (token) {
@@ -15,6 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
           Authorization: 'Bearer ' + token
         }
       });
+      console.log("request: "+request)
       return next.handle(request);
     }
     return next.handle(request);
