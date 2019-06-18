@@ -28,7 +28,7 @@ export class CreateSurveyComponent implements OnInit {
       'questions': this.formBuilder.array([this.createQuestion()]),
     });
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 6; i++) {
       this.addQuestion()
     }
     // for (let k = 0; k < 3; k++)
@@ -43,35 +43,12 @@ export class CreateSurveyComponent implements OnInit {
   createQuestion(): FormGroup {
     return this.formBuilder.group({
       'question': ['', Validators.compose([Validators.required])],
-      'choice1': ['', Validators.compose([Validators.required])],
-      'choice2': ['', Validators.compose([Validators.required])],
-      'choice3': ['', Validators.compose([Validators.required])],
-      'choice4': ['', Validators.compose([Validators.required])]
+      'choice1': [''],
+      'choice2': [''],
+      'choice3': [''],
+      'choice4': ['']
     });
   }
-
-  // createChoice(): FormGroup {
-  //   // return this.formBuilder.array()
-  //   // this.addChoice()
-
-  //   return this.formBuilder.group({      
-  //     0: ['', Validators.compose([Validators.required])],
-  //     1: ['', Validators.compose([Validators.required])],
-  //     2: ['', Validators.compose([Validators.required])],
-  //     3: ['', Validators.compose([Validators.required])]
-  //   })
-  // }
-
-  // addChoice(): void {
-  //   this.choiceList = this.surveyForm.get('choices') as FormArray;
-
-  //   // this.choiceList = this.questionList.controls[0].controls.choices;
-  //   // console.log(this.choiceList)
-  //   // for (let i = 0; i < this.questionList.length; i++) {
-  //   //   this.questionList[i].push(this.createChoice())
-  //   // }
-  //   this.choiceList.push(this.createChoice());
-  // }
 
   ngOnInit() {
   }
@@ -82,14 +59,12 @@ export class CreateSurveyComponent implements OnInit {
     this.resultSurvey.createdAt = new Date().toString();
     this.resultSurvey.questions = [];
 
-    //console.log(this.surveyForm.value.questions);
-
     for (let i = 0; i < this.surveyForm.value.questions.length; i++) {
       let tempQuestion = this.surveyForm.value.questions[i];
       let textOfQuestion = tempQuestion.question;
       let choices = [];
 
-      if (i < 7) // for multi-choice questions add choices
+      if (i < 4) // for multi-choice questions add choices
       {
         choices.push(tempQuestion.choice1);
         choices.push(tempQuestion.choice2);
