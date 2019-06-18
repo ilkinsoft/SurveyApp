@@ -181,10 +181,19 @@ router.get('/viewDetails/:surveyId', async function(req, res, next) {
   router.post('/completeSurvey', async function(req, res) {
     let survey = req.body;
   
-    // let surveyId = new ObjectId(survey.surveyId);
-    // await req.DB.collection("surveys").update({'_id':surveyId},{
-    //   [{ $push: {'questions': } }]]
-    // })
+    let surveyId = new ObjectId(survey.surveyId);
+    let index = req.body
+
+    // var result = Object.keys(obj).map(function(key) {
+    //     return [Number(key), obj[key]];
+    //   });
+      
+    //   console.log(result);
+
+    console.log(index);
+    await req.DB.collection("surveys").update({ _id: surveyId}, {
+        $push: {"questions.[index].answers":{"email":"test@test1.com","answer":1}}
+    })
   });
 
 

@@ -38,9 +38,12 @@ export class ViewSurveyComponent implements OnInit {
 
   constructor(private httpService:MyHttpServiceService,private route:ActivatedRoute) { }
 
+  surveyId:any;
+
   ngOnInit() {
     this.route.params.subscribe( params => {
-      this.httpService.get('surveys/viewDetails/'+params['surveyId'])
+      this.surveyId = params['surveyId'];
+      this.httpService.get('surveys/viewDetails/'+this.surveyId)
       .subscribe((result:MumSurvey)=>{
         this.initializeSurvey(result);
       });
@@ -73,8 +76,10 @@ export class ViewSurveyComponent implements OnInit {
 
   submitAnwsers(answers){
     console.log(answers);
-    let data = {"user_id":"1", answers};
-    this.httpService.post('surveys/postSurveyAnswers',JSON.stringify(data))
+    let data = {"user_id":"1","surveyId":this.surveyId, answers};
+
+    console.log(data);
+    this.httpService.post('surveys/completeSurvey',JSON.stringify(data))
       .subscribe(result=>{
         console.log(result);
       })
