@@ -46,6 +46,9 @@ app.use(async (req, res, next) => {
      client =  await mangoClient.connect(url , { useNewUrlParser: true });
       DB = client.db('mwa');
       req.DB = DB;
+
+      DB.collection('users').createIndex({username:1},{unique:true});
+      DB.collection('users').createIndex({email:1},{unique:true});
     }
     next()
   } catch (error) {
@@ -53,6 +56,10 @@ app.use(async (req, res, next) => {
   }
 
 })
+
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());

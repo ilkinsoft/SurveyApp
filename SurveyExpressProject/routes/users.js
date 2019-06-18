@@ -21,7 +21,32 @@ router.post('/register',async function(req, res, next) {
 
   let user = req.body;
 
-   bcrypt.genSalt(10, function(err, salt) {
+
+  let userFromDb = await req.DB.collection('users').findOne({email:req.body.email});
+
+
+  if(userFromDb){
+
+    resultData.code=resultEnum.emailExist;
+    resultData.data="Email already exists";
+
+    res.json(resultData);
+    return;
+  }
+
+    userFromDb = await req.DB.collection('users').findOne({username:req.body.username});
+
+    if(userFromDb){
+
+        resultData.code=resultEnum.usernameExist;
+        resultData.data="Username already exists";
+
+        res.json(resultData);
+        return;
+    }
+
+
+  bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(user.password, salt, async function(err, hash) {
       //console.log(hash);
       // Store hash in your password DB.

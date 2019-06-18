@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MyHttpServiceService } from '../services/MyHttpService';
 import { ToastrService } from 'ngx-toastr';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-survey',
@@ -20,7 +21,7 @@ export class CreateSurveyComponent implements OnInit {
 
   resultSurvey = { title: "", createdBy: "", createdAt: "", questions: [] };
 
-  constructor(private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
+  constructor(private router:Router,private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
 
     this.surveyForm = formBuilder.group({
 
@@ -95,6 +96,8 @@ export class CreateSurveyComponent implements OnInit {
       // console.log(this.resultSurvey)
       if (result.code === 'SUCCESS') {
         this.toastr.success('Yaay, Created successfully!', 'Success!', { timeOut: 2000, positionClass: 'toast-top-center' });
+        this.router.navigate(['/survey'])
+
       } else {
         this.toastr.error("Something went wrong!", 'Error :(', { timeOut: 2000, positionClass: 'toast-top-center' });
       }

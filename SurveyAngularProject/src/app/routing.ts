@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   //{ path: 'logout', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'viewSurvey/:surveyId' , component: ViewSurveyComponent},
+  //{path: 'viewSurvey/:surveyId' , component: ViewSurveyComponent},
+  {path: 'viewSurvey/:surveyId/:email' , component: ViewSurveyComponent},
 
 
   { path: 'create-survey', component: CreateSurveyComponent,canActivate : [AuthorizationGuard] },

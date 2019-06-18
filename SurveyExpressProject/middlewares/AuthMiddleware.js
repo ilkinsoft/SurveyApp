@@ -8,7 +8,7 @@ class AuthenticateMiddleware {
         console.log('req.url ' + req.url);
 
         if (req.url === '/users/login'
-            || req.url === '/users/register'
+            || req.url === '/users/register' || req.url.includes( '/surveys/viewDetails') || req.url.includes( '/completeSurvey')
             ) {
             next();
             return;
@@ -32,6 +32,7 @@ class AuthenticateMiddleware {
                 }
                 const token = splitted[1];
                 var user = jwt.verify(token);
+                req.user=user;
                 console.log(user);
                 if (!user) {
                     return res.status(403).json({

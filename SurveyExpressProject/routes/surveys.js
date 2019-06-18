@@ -79,14 +79,14 @@ router.get('/serveyId/:id', async function (req, res, next) {
 
 
 router.get('/:username', async function (req, res, next) {
-    console.log("Andy")
+    console.log("User: "+req.params.username)
     var data = await req.DB.collection("surveys").find({ "createdBy": req.params.username }).toArray();
     res.json(data);
 });
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
-    var data = await req.DB.collection("surveys").find({}).toArray();
+    var data = await req.DB.collection("surveys").find({ "createdBy": req.user.username }).toArray();
     res.json(data);
 });
 

@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
         this.toastr.success('Registered successfully, now time to login!', 'Success!',{timeOut:2000, positionClass: 'toast-top-center'});
         this.router.navigate(['/login'])
       }else{
-        this.toastr.error("Something went wrong!", 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
+        this.toastr.error(result.data, 'Error :(',{timeOut:2000, positionClass: 'toast-top-center'});
 
       }
       console.log(result);
