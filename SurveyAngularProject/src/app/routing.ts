@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'survey', component: SurveyComponent },
   { path: 'surveyDetails', component: SurvayDetailsComponent },
   {path: 'surveyInvite' , component: SurveyInviteComponent},
-  {path: 'viewSurvey/:surveyId' , component: ViewSurveyComponent},
+  {path: 'viewSurvey/:surveyId/:email' , component: ViewSurveyComponent},
   { path: '', component: HomeComponent }
 
 ];
