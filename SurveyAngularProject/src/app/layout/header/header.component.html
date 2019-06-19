@@ -10,7 +10,12 @@
    <!-- Left nav -->
    <ul *ngIf="username" class="nav navbar-nav">
       <li><a href="/survey">Surveys</a></li>
-      <li><a href="/create-survey">Create survey</a></li>
+      <!-- <li><a href="/create-survey">Create survey</a></li> -->
+      <li>
+         <a matTooltip="Click to enter number of questions" (click)="openDialog()">
+            Create Survey
+         </a> 
+      </li>
    </ul>
    <!-- /left nav -->
 

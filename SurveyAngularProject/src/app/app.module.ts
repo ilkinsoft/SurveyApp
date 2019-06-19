@@ -27,6 +27,7 @@ import {MomentModule} from "angular2-moment";
 import {AuthInterceptor} from "./interceptors/authInterceptor";
 import {AuthorizationGuard} from "./interceptors/AuthGuard";
 import {NotificationService} from "./services/NotificationService";
+import { CreateSurveyDialogComponent } from './create-survey-dialog/create-survey-dialog.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {NotificationService} from "./services/NotificationService";
     ViewSurveyComponent,
     MulitchoiseQuestionComponent,
     ArticleQuestionComponent,
-    SurveyCreatorComponent],
+    SurveyCreatorComponent,
+    CreateSurveyDialogComponent],
 
 
   imports: [
@@ -71,6 +73,9 @@ import {NotificationService} from "./services/NotificationService";
     AuthorizationGuard,
     NotificationService
   ],
-  bootstrap: [AppComponent]
+  entryComponents: [CreateSurveyDialogComponent],
+  exports: [CreateSurveyDialogComponent],
+
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

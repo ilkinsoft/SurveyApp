@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Enter questions count</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Number of multi-choice questions" type="number" [(ngModel)]="dataMultiChoiceCount" id="multiChoice" formControlName="multiChoiceCount">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Number of open-ended questions" type="number" [(ngModel)]="dataOpenEndedCount" id="openEnded" formControlName="openEndedCount">
+      </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button type="submit" mat-button [mat-dialog-close]="data" cdkFocusInitial class="btn btn-primary" (click)="setQuestionsCount()" [disabled]="!form.valid">Ok</button>
+</div>

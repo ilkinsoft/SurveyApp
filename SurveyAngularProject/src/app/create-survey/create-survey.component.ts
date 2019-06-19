@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MyHttpServiceService } from '../services/MyHttpService';
 import { ToastrService } from 'ngx-toastr';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-create-survey',
@@ -21,7 +21,18 @@ export class CreateSurveyComponent implements OnInit {
 
   resultSurvey = { title: "", createdBy: "", createdAt: "", questions: [] };
 
-  constructor(private router:Router,private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
+  multiChoiceCount: number;
+  openEndedCount: number;
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private myHttpService: MyHttpServiceService, private toastr: ToastrService) {
+
+    this.multiChoiceCount = Number.parseInt(localStorage.getItem('multiChoiceCount'));
+    this.openEndedCount = Number.parseInt(localStorage.getItem('openEndedCount'));
+    if (!this.multiChoiceCount) {
+      this.multiChoiceCount = 3
+      this.openEndedCount = 2
+    }
+
 
     this.surveyForm = formBuilder.group({
 
@@ -29,7 +40,7 @@ export class CreateSurveyComponent implements OnInit {
       'questions': this.formBuilder.array([this.createQuestion()]),
     });
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 1; i < this.multiChoiceCount + this.openEndedCount; i++) {
       this.addQuestion()
     }
     // for (let k = 0; k < 3; k++)
@@ -68,7 +79,7 @@ export class CreateSurveyComponent implements OnInit {
       let textOfQuestion = tempQuestion.question;
       let choices = [];
 
-      if (i < 3) // for multi-choice questions add choices
+      if (i < this.multiChoiceCount) // for multi-choice questions add choices
       {
         choices.push(tempQuestion.choice1);
         choices.push(tempQuestion.choice2);

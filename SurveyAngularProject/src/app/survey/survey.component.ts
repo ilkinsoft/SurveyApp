@@ -40,7 +40,7 @@ export class SurveyComponent {
 
   set_products() {
     this.httpClient.get('http://localhost:3000/surveys').subscribe((res) => {
-      console.log(JSON.stringify(res));
+      // console.log(JSON.stringify(res));
       this.ELEMENT_DATA = JSON.parse(JSON.stringify(res));
       this.dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
